@@ -29,41 +29,55 @@ document.addEventListener("DOMContentLoaded", function() {
         trainerDiv.append(button)
         mainTag.append(trainerDiv)
         trainerDiv.append(pokemonList)
+        let pokemonsArray = trainer.pokemons
+            pokemonsArray.forEach(function(pokemon) {
+                // console.log(pokemon.nickname)
+            const listItem = document.createElement('li')
+            const releaseButton = document.createElement('button')
+            listItem.innerText = pokemon.nickname.concat("(", pokemon.species).concat(")" )
+            listItem.className = pokemon.trainer_id
+            releaseButton.className = "release"
+            releaseButton.dataset.id = pokemon.id
+            listItem.append(releaseButton)
+            pokemonList.append(listItem)
+            })
+
+       
     }
 
-    function fetchPokemon() {
-        pokemonArray = []
-        fetch(POKEMONS_URL)
-        .then(response => response.json())
-        .then(results => {
-            results.forEach(pokemon => pokemonArray.push(pokemon.trainer_id))
-            console.log(pokemonArray)
-        })
-    }   
+    // function fetchPokemon() {
+    //     pokemonArray = []
+    //     fetch(POKEMONS_URL)
+    //     .then(response => response.json())
+    //     .then(results => {
+    //         results.forEach(pokemon => pokemonArray.push(pokemon))
+    //         // console.log(pokemonArray)
+    //     })
+    // }   
 
-    fetchPokemon()
+    // fetchPokemon()
 
 
-    const pokeTrainerDiv = document.getElementsByClassName("card")
+    // const pokeTrainerDiv = document.getElementsByClassName("card")
     
     
-    function createListItem(pokemon) {
-        const listItem = document.createElement('li')
-        const releaseButton = document.createElement('button')
-        listItem.innerText = pokemon.nickname.concat("(", pokemon.species).concat(")" )
-        listItem.className = pokemon.trainer_id
-        releaseButton.className = "release"
-        releaseButton.dataset.id = pokemon.id
-        listItem.append(releaseButton)
+    // function createListItem(pokemon) {
+    //     const listItem = document.createElement('li')
+    //     const releaseButton = document.createElement('button')
+    //     listItem.innerText = pokemon.nickname.concat("(", pokemon.species).concat(")" )
+    //     listItem.className = pokemon.trainer_id
+    //     releaseButton.className = "release"
+    //     releaseButton.dataset.id = pokemon.id
+    //     listItem.append(releaseButton)
 
-        if (pokeTrainerDiv === pokeTrainerDiv.dataset) {
-            pokeTrainerDiv.append(listItem)
-        }
-            // console.log(listItem)
-    }
+    //     if (pokeTrainerDiv === pokeTrainerDiv.dataset) {
+    //         pokeTrainerDiv.append(listItem)
+    //     }
+    //         // console.log(listItem)
+    // }
 
     
-    // if trainer ID of a pokemon matches the trainer ID of the div
+    // // if trainer ID of a pokemon matches the trainer ID of the div
 
     fetchTrainers()
 }) // end of DOMContendLoaded
