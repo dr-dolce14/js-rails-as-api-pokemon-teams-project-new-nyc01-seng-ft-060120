@@ -29,18 +29,23 @@ document.addEventListener("DOMContentLoaded", function() {
         trainerDiv.append(button)
         mainTag.append(trainerDiv)
         trainerDiv.append(pokemonList)
-        fetchPokemon()
     }
-    
+
     function fetchPokemon() {
+        pokemonArray = []
         fetch(POKEMONS_URL)
         .then(response => response.json())
         .then(results => {
-            results.forEach(pokemon => createListItem(pokemon))
+            results.forEach(pokemon => pokemonArray.push(pokemon.trainer_id))
+            console.log(pokemonArray)
         })
     }   
+
+    fetchPokemon()
+
+
     const pokeTrainerDiv = document.getElementsByClassName("card")
-    console.log(pokeTrainerDiv.dataset)
+    
     
     function createListItem(pokemon) {
         const listItem = document.createElement('li')
@@ -57,10 +62,7 @@ document.addEventListener("DOMContentLoaded", function() {
             // console.log(listItem)
     }
 
-    function appendListItem(pokemon){
-        
-    }
-
+    
     // if trainer ID of a pokemon matches the trainer ID of the div
 
     fetchTrainers()
