@@ -45,39 +45,34 @@ document.addEventListener("DOMContentLoaded", function() {
        
     }
 
-    // function fetchPokemon() {
-    //     pokemonArray = []
-    //     fetch(POKEMONS_URL)
-    //     .then(response => response.json())
-    //     .then(results => {
-    //         results.forEach(pokemon => pokemonArray.push(pokemon))
-    //         // console.log(pokemonArray)
-    //     })
-    // }   
+    const clickHandler = () => {
+        document.addEventListener("click", function(e){
+            if (e.target.innerText === "Add Pokemon"){
+                fetch(POKEMONS_URL, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
+                    body: JSON.stringify({
+                        trainer_id: e.target.dataset.trainerId
+                    })
+                })
+                .then(res => res.json())
+                .then(pokemon => {
+                    appendNewPokemon(pokemon)
+                })
+            }
+        })
+    }
 
-    // fetchPokemon()
+    function appendNewPokemon(pokemon){
+        
+    }
+
+  
 
 
-    // const pokeTrainerDiv = document.getElementsByClassName("card")
-    
-    
-    // function createListItem(pokemon) {
-    //     const listItem = document.createElement('li')
-    //     const releaseButton = document.createElement('button')
-    //     listItem.innerText = pokemon.nickname.concat("(", pokemon.species).concat(")" )
-    //     listItem.className = pokemon.trainer_id
-    //     releaseButton.className = "release"
-    //     releaseButton.dataset.id = pokemon.id
-    //     listItem.append(releaseButton)
-
-    //     if (pokeTrainerDiv === pokeTrainerDiv.dataset) {
-    //         pokeTrainerDiv.append(listItem)
-    //     }
-    //         // console.log(listItem)
-    // }
-
-    
-    // // if trainer ID of a pokemon matches the trainer ID of the div
-
+    clickHandler()
     fetchTrainers()
 }) // end of DOMContendLoaded
