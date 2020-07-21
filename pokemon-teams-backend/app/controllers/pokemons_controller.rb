@@ -19,7 +19,7 @@ class PokemonsController < ApplicationController
             pokemon.species = Faker::Games::Pokemon.name
         end
 
-
+        pokemon.save
         render json: pokemon
     end
 

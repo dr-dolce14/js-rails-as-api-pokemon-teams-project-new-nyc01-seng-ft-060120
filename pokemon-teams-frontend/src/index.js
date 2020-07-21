@@ -47,6 +47,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const clickHandler = () => {
         document.addEventListener("click", function(e){
+            const body = {
+                
+            }
             if (e.target.innerText === "Add Pokemon"){
                 fetch(POKEMONS_URL, {
                     method: "POST",
@@ -60,15 +63,16 @@ document.addEventListener("DOMContentLoaded", function() {
                 })
                 .then(res => res.json())
                 .then(pokemon => {
-                    appendNewPokemon(pokemon)
+                    // console.log(pokemon)
                 })
+               
             }
+            
+            
         })
     }
 
-    function appendNewPokemon(pokemon){
-        
-    }
+
 
   
 
